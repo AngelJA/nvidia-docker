@@ -1,3 +1,8 @@
+# The purpose of this fork is to document installing nvidia-docker 1.0.1 on ubuntu artful (17.10).  Please switch to branch 1.0.
+
+
+
+
 # Docker Engine Utility for NVIDIA GPUs
 
 [![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat-square)](https://raw.githubusercontent.com/NVIDIA/nvidia-docker/master/LICENSE)
