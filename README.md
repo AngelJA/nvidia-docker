@@ -1,3 +1,48 @@
+# Installing nvidia-docker 1.0.1 on Ubuntu Artful (17.10)
+## Motivation
+As of 1/31/18 running OpenGL apps inside a container using nvidia-docker2 is not supported: [https://github.com/NVIDIA/nvidia-docker/issues/534](https://github.com/NVIDIA/nvidia-docker/issues/534)
+
+And, using nvidia's pre-built deb of 1.0.1-1 raises an error because of dependency problems.
+```sh
+(Reading database ... 211958 files and directories currently installed.)
+Preparing to unpack .../nvidia-docker_1.0.1-1_amd64.deb ...
+Unpacking nvidia-docker (1.0.1-1) over (1.0.1-1) ...
+dpkg: dependency problems prevent configuration of nvidia-docker:
+ nvidia-docker depends on sysv-rc (>= 2.88dsf-24) | file-rc (>= 0.8.16); however:
+  Package sysv-rc is not installed.
+  Package file-rc is not installed.
+
+dpkg: error processing package nvidia-docker (--install):
+ dependency problems - leaving unconfigured
+```
+
+## Instructions
+The necessary changes have already been made to the code on this branch, simply clone, switch to the right branch and build.
+
+```sh
+# clone the repo
+git clone https://github.com/AngelJA/nvidia-docker.git && cd nvidia-docker
+
+# checkout the 1.0 branch
+git checkout 1.0
+
+# build the deb
+make deb
+
+# install pre-req
+sudo apt-get update && sudo apt-get install -y nvidia-modprobe
+
+# install
+sudo dpkg -i dist/nvidia-docker_1.0.1-1_amd64.deb
+
+# that's it! test it out
+nvidia-docker run --rm nvidia/cuda nvidia-smi
+
+```
+ 
+<br><br><br><br><br>
+# --------- Original Nvidia Readme ---------
+
 # Docker Engine Utility for NVIDIA GPUs
 
 **We have now transitioned to [nvidia-docker 2.0](https://github.com/NVIDIA/nvidia-docker/tree/master).**
