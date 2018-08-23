@@ -1,6 +1,9 @@
-# Installing nvidia-docker 1.0.1 on Ubuntu Artful (17.10)
+# Installing nvidia-docker 1.0.1 on Bionic (18.04)
+## Note: nvidia-docker 1 is not supported on versions after Xenial
 ## Motivation
 As of 1/31/18 running OpenGL apps inside a container using nvidia-docker2 is not supported: [https://github.com/NVIDIA/nvidia-docker/issues/534](https://github.com/NVIDIA/nvidia-docker/issues/534)
+
+(this may be possible but requires changing images: https://github.com/NVIDIA/nvidia-docker/issues/136#issuecomment-398593070)
 
 And, using nvidia's pre-built deb of 1.0.1-1 raises an error because of dependency problems.
 ```sh
@@ -17,14 +20,11 @@ dpkg: error processing package nvidia-docker (--install):
 ```
 
 ## Instructions
-The necessary changes have already been made to the code on this branch, simply clone, switch to the right branch and build.
+The necessary changes have already been made to the code on this branch, simply clone, and build.
 
 ```sh
 # clone the repo
 git clone https://github.com/AngelJA/nvidia-docker.git && cd nvidia-docker
-
-# checkout the 1.0 branch
-git checkout 1.0
 
 # build the deb
 make deb
